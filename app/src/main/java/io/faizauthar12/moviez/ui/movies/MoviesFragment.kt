@@ -13,10 +13,6 @@ class MoviesFragment : Fragment() {
     // Binding support
     private lateinit var fragmentMoviesBinding: FragmentMoviesBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Binding support
         fragmentMoviesBinding = FragmentMoviesBinding.inflate(layoutInflater, container,false)
