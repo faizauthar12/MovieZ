@@ -1,9 +1,8 @@
-package io.faizauthar12.moviez
+package io.faizauthar12.moviez.ui.detail
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import io.faizauthar12.moviez.R
 
 class DetailShowActivity : AppCompatActivity() {
 

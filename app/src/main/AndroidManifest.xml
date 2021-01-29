@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieZ">
         <activity
-            android:name=".DetailShowActivity"
+            android:name=".ui.detail.DetailShowActivity"
             android:label="@string/title_activity_detail_show"
-            android:parentActivityName=".HomeActivity"
+            android:parentActivityName=".ui.home.HomeActivity"
             android:theme="@style/Theme.MovieZ.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value=".ui.home.HomeActivity" />
         </activity>
-        <activity android:name=".HomeActivity">
+        <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

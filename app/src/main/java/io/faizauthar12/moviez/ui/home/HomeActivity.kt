@@ -1,7 +1,8 @@
-package io.faizauthar12.moviez
+package io.faizauthar12.moviez.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import io.faizauthar12.moviez.R
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
