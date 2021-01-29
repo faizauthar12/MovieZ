@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieZ</string>
+    <string name="title_activity_detail_show">Detail Show</string>
 </resources>
