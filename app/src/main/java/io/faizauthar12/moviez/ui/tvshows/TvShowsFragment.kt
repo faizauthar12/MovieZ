@@ -6,13 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.faizauthar12.moviez.R
+import io.faizauthar12.moviez.databinding.FragmentTvShowsBinding
+
 class TvShowsFragment : Fragment() {
+
+    // Binding support
+    private lateinit var fragmentTvShowsBinding: FragmentTvShowsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tv_shows, container, false)
+        // Binding support
+        fragmentTvShowsBinding = FragmentTvShowsBinding.inflate(layoutInflater, container, false)
+        return fragmentTvShowsBinding.root
     }
 }
