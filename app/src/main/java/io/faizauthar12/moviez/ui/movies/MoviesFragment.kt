@@ -6,15 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.faizauthar12.moviez.R
+import io.faizauthar12.moviez.databinding.FragmentMoviesBinding
 
 class MoviesFragment : Fragment() {
+
+    // Binding support
+    private lateinit var fragmentMoviesBinding: FragmentMoviesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false)
+        // Binding support
+        fragmentMoviesBinding = FragmentMoviesBinding.inflate(layoutInflater, container,false)
+        return fragmentMoviesBinding.root
     }
 }
