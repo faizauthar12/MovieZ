@@ -13,10 +13,6 @@ class TvShowsFragment : Fragment() {
     // Binding support
     private lateinit var fragmentTvShowsBinding: FragmentTvShowsBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Binding support
         fragmentTvShowsBinding = FragmentTvShowsBinding.inflate(layoutInflater, container, false)
