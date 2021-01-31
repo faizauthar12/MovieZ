@@ -34,7 +34,7 @@
             android:id="@+id/tv_movie_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:ellipsize="end"
@@ -60,14 +60,22 @@
 
         <TextView
             android:id="@+id/tv_overview"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
             android:gravity="start"
+            android:maxLines="3"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tv_movie_release"
             app:layout_constraintTop_toBottomOf="@+id/tv_movie_release"
-            tools:text="@string/descriptionalt"/>
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@string/descriptionalt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

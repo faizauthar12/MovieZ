@@ -36,7 +36,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
             with(binding) {
                 tvMovieTitle.text = movie.title
                 tvMovieRelease.text = movie.releaseYear
-                tvOverview.text = itemView.resources.getString(R.string.descriptionalt, movie.description.substring(0,30))
+                tvOverview.text = movie.description
                 Glide.with(itemView.context)
                         .load(movie.imagePath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
