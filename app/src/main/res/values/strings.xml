@@ -7,4 +7,5 @@
     <string name="release">Release</string>
     <string name="description">Description</string>
     <string name="descriptionalt">%s...</string>
+    <string name="title_series">Tv Shows Title</string>
 </resources>
