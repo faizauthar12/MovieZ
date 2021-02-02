@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.ui.movies.MoviesFragment
-import io.faizauthar12.moviez.ui.tvshows.TvShowsFragment
+import io.faizauthar12.moviez.ui.series.SeriesFragment
 
 class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -19,7 +19,7 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
     override fun getItem(position: Int): Fragment =
         when (position) {
             0 -> MoviesFragment()
-            1 -> TvShowsFragment()
+            1 -> SeriesFragment()
             else -> Fragment()
         }
 
