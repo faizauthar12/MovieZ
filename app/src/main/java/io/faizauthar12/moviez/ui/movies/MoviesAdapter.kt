@@ -1,5 +1,6 @@
 package io.faizauthar12.moviez.ui.movies
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.data.ShowEntity
 import io.faizauthar12.moviez.databinding.ItemsMoviesBinding
+import io.faizauthar12.moviez.ui.detail.DetailShowActivity
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
@@ -42,6 +44,12 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPoster)
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailShowActivity::class.java)
+                    intent.putExtra(DetailShowActivity.EXTRA_CATEGORY,1)
+                    intent.putExtra(DetailShowActivity.EXTRA_ID, movie.showsId)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }
