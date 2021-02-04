@@ -18,15 +18,6 @@ class SeriesViewModelTest {
     fun getSeries() {
         val showsEntities = viewModel.getSeries()
         assertNotNull(showsEntities)
-        assertEquals(3,showsEntities.size)
+        assertEquals(10,showsEntities.size)
     }
 }
-
-/*
-    Ketika dilakukan instrumen testing assertEquals berjumlah 3. Maka hasil test akan error.
-    Karena data sebenarnya ialah 10.
-    Kode error :
-    java.lang.AssertionError:
-    Expected :3
-    Actual   :10
- */

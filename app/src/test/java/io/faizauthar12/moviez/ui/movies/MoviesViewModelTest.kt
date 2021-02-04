@@ -18,15 +18,6 @@ class MoviesViewModelTest {
     fun getMovies() {
         val showsEntities = viewModel.getMovies()
         assertNotNull(showsEntities)
-        assertEquals(5,showsEntities.size)
+        assertEquals(10,showsEntities.size)
     }
 }
-
-/*
-    Ketika dilakukan instrumen testing assertEquals berjumlah 5. Maka hasil test akan error.
-    Karena data sebenarnya ialah 10.
-    Kode error :
-    java.lang.AssertionError:
-    Expected :5
-    Actual   :10
- */
