@@ -40,8 +40,7 @@ class DetailShowActivity : AppCompatActivity() {
             if(showsId != null){
                 viewModel.setSelectedShow(showsId)
 
-                val showsCategory = extras.getInt(EXTRA_CATEGORY)
-                when(showsCategory){
+                when(extras.getInt(EXTRA_CATEGORY)){
                     /*
                         1 = Movies
                         2 = Series
