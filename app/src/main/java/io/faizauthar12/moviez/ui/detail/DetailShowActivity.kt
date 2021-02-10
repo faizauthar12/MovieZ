@@ -1,7 +1,6 @@
 package io.faizauthar12.moviez.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -9,9 +8,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import io.faizauthar12.moviez.R
-import io.faizauthar12.moviez.data.ShowEntity
+import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 import io.faizauthar12.moviez.databinding.ActivityDetailShowBinding
 import io.faizauthar12.moviez.databinding.ContentDetailShowBinding
+import io.faizauthar12.moviez.viewmodel.ViewModelFactory
 
 class DetailShowActivity : AppCompatActivity() {
 
@@ -32,7 +32,8 @@ class DetailShowActivity : AppCompatActivity() {
         setSupportActionBar(activityDetailShowBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[DetailShowViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this,factory)[DetailShowViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null ){

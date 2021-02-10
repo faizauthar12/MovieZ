@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.faizauthar12.moviez.databinding.FragmentSeriesBinding
+import io.faizauthar12.moviez.viewmodel.ViewModelFactory
 
 class SeriesFragment : Fragment() {
 
@@ -24,7 +25,8 @@ class SeriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null){
-            val viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[SeriesViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this,factory)[SeriesViewModel::class.java]
             val series = viewModel.getSeries()
 
             val seriesAdapter = SeriesAdapter()
