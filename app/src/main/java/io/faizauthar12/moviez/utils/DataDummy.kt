@@ -1,6 +1,6 @@
 package io.faizauthar12.moviez.utils
 
-import io.faizauthar12.moviez.data.ShowEntity
+import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 
 object DataDummy {
 

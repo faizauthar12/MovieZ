@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import io.faizauthar12.moviez.R
-import io.faizauthar12.moviez.data.ShowEntity
+import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 import io.faizauthar12.moviez.databinding.ItemsMoviesBinding
 import io.faizauthar12.moviez.ui.detail.DetailShowActivity
 

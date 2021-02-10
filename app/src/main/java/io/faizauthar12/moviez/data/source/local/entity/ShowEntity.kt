@@ -1,4 +1,4 @@
-package io.faizauthar12.moviez.data
+package io.faizauthar12.moviez.data.source.local.entity
 
 data class ShowEntity(
         var showsId: String,
