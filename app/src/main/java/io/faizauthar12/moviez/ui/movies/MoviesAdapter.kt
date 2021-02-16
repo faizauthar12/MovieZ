@@ -1,6 +1,5 @@
 package io.faizauthar12.moviez.ui.movies
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +8,6 @@ import com.bumptech.glide.request.RequestOptions
 import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 import io.faizauthar12.moviez.databinding.ItemsMoviesBinding
-import io.faizauthar12.moviez.ui.detail.DetailShowActivity
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
