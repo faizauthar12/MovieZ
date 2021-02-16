@@ -15,6 +15,8 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
     private val listMovie = ArrayList<ShowEntity>()
 
+    var onItemClickCallback: OnItemClickCallback? = null
+
     fun setMovies(movies: List<ShowEntity>?) {
         if (movies == null) return
         this.listMovie.clear()
@@ -28,13 +30,15 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = listMovie[position]
-        holder.bind(movie)
+        holder.bind(movie) {
+            onItemClickCallback?.onItemClicked(movie)
+        }
     }
 
     override fun getItemCount(): Int = listMovie.size
 
     class MovieViewHolder(private val binding: ItemsMoviesBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: ShowEntity) {
+        fun bind(movie: ShowEntity, itemClicked: () -> Unit) {
             with(binding) {
                 tvMovieTitle.text = movie.title
                 tvMovieRelease.text = movie.releaseYear
@@ -44,13 +48,12 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPoster)
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailShowActivity::class.java)
-                    intent.putExtra(DetailShowActivity.EXTRA_CATEGORY,1)
-                    intent.putExtra(DetailShowActivity.EXTRA_ID, movie.showsId)
-                    itemView.context.startActivity(intent)
-                }
+                itemView.setOnClickListener { itemClicked.invoke() }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: ShowEntity)
     }
 }
