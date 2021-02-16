@@ -16,11 +16,11 @@ import io.faizauthar12.moviez.viewmodel.ViewModelFactory
 class DetailShowActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_CATEGORY = "extra_category"
-        const val EXTRA_ID = "extra_id"
+        const val EXTRA_DATA_DETAIL = "extra_data_detail"
     }
 
     private lateinit var detailContentBinding: ContentDetailShowBinding
+    private var data: ShowEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,19 +37,8 @@ class DetailShowActivity : AppCompatActivity() {
 
         val extras = intent.extras
         if (extras != null ){
-            val showsId = extras.getString(EXTRA_ID)
-            if(showsId != null){
-                viewModel.setSelectedShow(showsId)
-
-                when(extras.getInt(EXTRA_CATEGORY)){
-                    /*
-                        1 = Movies
-                        2 = Series
-                     */
-                    1 -> populateDetail(viewModel.getMovie())
-                    2 -> populateDetail(viewModel.getSeries())
-                }
-            }
+            data = intent.getParcelableExtra(EXTRA_DATA_DETAIL)
+            data?.let { populateDetail(it) }
         } else {
             val toast = Toast.makeText(
                     applicationContext,
