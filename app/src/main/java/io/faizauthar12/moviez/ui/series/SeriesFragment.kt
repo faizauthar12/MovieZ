@@ -30,10 +30,15 @@ class SeriesFragment : Fragment() {
         if (activity != null){
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this,factory)[SeriesViewModel::class.java]
-            val series = viewModel.getSeries()
 
             val seriesAdapter = SeriesAdapter()
-            seriesAdapter.setSeries(series)
+
+            fragmentSeriesBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getSeries().observe(viewLifecycleOwner, { series ->
+                fragmentSeriesBinding.progressBar.visibility = View.GONE
+                seriesAdapter.setSeries(series)
+                seriesAdapter.notifyDataSetChanged()
+            })
 
             with(fragmentSeriesBinding.rvSeries){
                 layoutManager = LinearLayoutManager(context)

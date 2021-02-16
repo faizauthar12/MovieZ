@@ -1,6 +1,7 @@
 package io.faizauthar12.moviez.ui.detail
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -35,10 +36,18 @@ class DetailShowActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(this,factory)[DetailShowViewModel::class.java]
 
+        // Visibility changes before populated
+        activityDetailShowBinding.progressBar.visibility = View.VISIBLE
+        activityDetailShowBinding.content.visibility = View.INVISIBLE
+
         val extras = intent.extras
         if (extras != null ){
             data = intent.getParcelableExtra(EXTRA_DATA_DETAIL)
             data?.let { populateDetail(it) }
+
+            // Visibility changes after succesfully populated
+            activityDetailShowBinding.progressBar.visibility = View.GONE
+            activityDetailShowBinding.content.visibility = View.VISIBLE
         } else {
             val toast = Toast.makeText(
                     applicationContext,
