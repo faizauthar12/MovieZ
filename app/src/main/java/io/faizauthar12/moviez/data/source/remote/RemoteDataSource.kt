@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import io.faizauthar12.moviez.data.source.remote.response.MovieResponse
 import io.faizauthar12.moviez.data.source.remote.response.SerieResponse
+import io.faizauthar12.moviez.utils.EspressoIdlingResource
 import io.faizauthar12.moviez.utils.JsonHelper
 
 class RemoteDataSource private constructor(private val jsonHelper: JsonHelper){
@@ -23,11 +24,19 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper){
     }
 
     fun getAllMovies(callback: LoadMoviesCallback) {
-        handler.postDelayed({ callback.onAllMoviesReceived(jsonHelper.loadMovies())}, SERVICE_LATENCY_IN_MILLIS)
+        EspressoIdlingResource.increment()
+        handler.postDelayed({
+            callback.onAllMoviesReceived(jsonHelper.loadMovies())
+            EspressoIdlingResource.decrement()
+        }, SERVICE_LATENCY_IN_MILLIS)
     }
 
     fun getAllSeries(callback: LoadSeriesCallback) {
-        handler.postDelayed({ callback.onAllSeriesReceived(jsonHelper.loadSeries())}, SERVICE_LATENCY_IN_MILLIS)
+        EspressoIdlingResource.increment()
+        handler.postDelayed({
+            callback.onAllSeriesReceived(jsonHelper.loadSeries())
+            EspressoIdlingResource.decrement()
+        }, SERVICE_LATENCY_IN_MILLIS)
     }
 
     interface LoadMoviesCallback {
