@@ -10,10 +10,13 @@ import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 import io.faizauthar12.moviez.databinding.ItemsSeriesBinding
 import io.faizauthar12.moviez.ui.detail.DetailShowActivity
+import io.faizauthar12.moviez.ui.movies.MoviesAdapter
 
 class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
 
     private val listSeries = ArrayList<ShowEntity>()
+
+    var onItemClickCallback: SeriesAdapter.OnItemClickCallback? = null
 
     fun setSeries(series: List<ShowEntity>?){
         if (series == null) return
@@ -28,13 +31,15 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
         val series = listSeries[position]
-        holder.bind(series)
+        holder.bind(series) {
+            onItemClickCallback?.onItemClicked(series)
+        }
     }
 
     override fun getItemCount(): Int = listSeries.size
 
     class SeriesViewHolder(private val binding: ItemsSeriesBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(series: ShowEntity){
+        fun bind(series: ShowEntity, itemClicked: () -> Unit){
             with(binding){
                 tvSeriesTitle.text = series.title
                 tvSeriesRelease.text = series.releaseYear
@@ -44,13 +49,12 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPoster)
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailShowActivity::class.java)
-                    intent.putExtra(DetailShowActivity.EXTRA_CATEGORY,2)
-                    intent.putExtra(DetailShowActivity.EXTRA_ID, series.showsId)
-                    itemView.context.startActivity(intent)
-                }
+                itemView.setOnClickListener { itemClicked.invoke() }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: ShowEntity)
     }
 }
