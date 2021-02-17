@@ -4,6 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 import io.faizauthar12.moviez.data.source.remote.RemoteDataSource
+import io.faizauthar12.moviez.data.source.remote.response.DataResponse
+import io.faizauthar12.moviez.utils.EspressoIdlingResource
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MovieZRepository private constructor(private val remoteDataSource: RemoteDataSource): MovieZDataSource {
 
@@ -11,50 +16,72 @@ class MovieZRepository private constructor(private val remoteDataSource: RemoteD
         @Volatile
         private var instance: MovieZRepository? = null
         fun getInstance(remoteData: RemoteDataSource): MovieZRepository =
-                instance ?: synchronized(this) {
-                    instance ?: MovieZRepository(remoteData)
-                }
+            instance ?: synchronized(this) {
+                instance ?: MovieZRepository(remoteData)
+            }
     }
 
     override fun getAllMovies(): LiveData<List<ShowEntity>> {
-        val movieResults = MutableLiveData<List<ShowEntity>>()
-        remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMoviesCallback {
-            override fun onAllMoviesReceived(movieResponses: List<MovieResponse>) {
-                val movieList = ArrayList<ShowEntity>()
-                for (response in movieResponses) {
-                    val movie = ShowEntity(
-                        response.showsId,
-                        response.title,
-                        response.description,
-                        response.releaseYear,
-                        response.imagePath
-                    )
-                    movieList.add(movie)
+        EspressoIdlingResource.increment()
+        val movies = MutableLiveData<List<ShowEntity>>()
+        remoteDataSource.getAllMovies().enqueue(object : Callback<DataResponse> {
+            override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { callback ->
+                        val movieList = arrayListOf<ShowEntity>()
+                        for (result in callback.results) {
+                            movieList.add(
+                                ShowEntity(
+                                    result.overview,
+                                    result.originalTitle,
+                                    result.id,
+                                    result.posterPath,
+                                    result.releaseDate
+                                )
+                            )
+                        }
+                        movies.postValue(movieList)
+                        EspressoIdlingResource.decrement()
+                    }
                 }
-                movieResults.postValue(movieList)
+            }
+
+            override fun onFailure(call: Call<DataResponse>, t: Throwable) {
+                t.printStackTrace()
             }
         })
-        return movieResults
+        return movies
     }
 
     override fun getAllSeries(): LiveData<List<ShowEntity>> {
-        val serieResults = MutableLiveData<List<ShowEntity>>()
-        remoteDataSource.getAllSeries(object : RemoteDataSource.LoadSeriesCallback {
-            override fun onAllSeriesReceived(serieResponses: List<SerieResponse>) {
-                val serieList = ArrayList<ShowEntity>()
-                for (response in serieResponses) {
-                    val serie = ShowEntity(
-                        response.showsId,
-                        response.title,
-                        response.description,
-                        response.releaseYear,
-                        response.imagePath
-                    )
-                    serieList.add(serie)
+        EspressoIdlingResource.increment()
+        val series = MutableLiveData<List<ShowEntity>>()
+        remoteDataSource.getAllSeries().enqueue(object : Callback<DataResponse> {
+            override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { callback ->
+                        val serieList = arrayListOf<ShowEntity>()
+                        for (result in callback.results) {
+                            serieList.add(
+                                ShowEntity(
+                                    result.overview,
+                                    result.originalName,
+                                    result.id,
+                                    result.posterPath,
+                                    result.firstAirDate
+                                )
+                            )
+                        }
+                        series.postValue(serieList)
+                        EspressoIdlingResource.decrement()
+                    }
                 }
-                serieResults.postValue(serieList)
+            }
+
+            override fun onFailure(call: Call<DataResponse>, t: Throwable) {
+                t.printStackTrace()
             }
         })
-        return serieResults
+        return series
     }
 }
