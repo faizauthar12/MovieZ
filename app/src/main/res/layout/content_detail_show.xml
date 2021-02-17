@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="start"
+        android:maxLength="4"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
