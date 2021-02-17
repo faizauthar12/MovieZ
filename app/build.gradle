@@ -8,6 +8,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    def apikeyPropertiesFile = rootProject.file("apikey.properties")
+    def apikeyProperties = new Properties()
+    apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
     defaultConfig {
         applicationId "io.faizauthar12.moviez"
         minSdkVersion 21
@@ -20,9 +24,18 @@ android {
     }
 
     buildTypes {
+        debug{
+            buildConfigField("String", "ApiKey", apikeyProperties['API_KEY'])
+            buildConfigField 'String', "BaseImageUrl" , BASE_IMAGE_URL
+            buildConfigField 'String', "BaseUrl" , BASE_URL
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "ApiKey", apikeyProperties['API_KEY'])
+            buildConfigField 'String', "BaseImageUrl" , BASE_IMAGE_URL
+            buildConfigField 'String', "BaseUrl" , BASE_URL
         }
     }
     compileOptions {
