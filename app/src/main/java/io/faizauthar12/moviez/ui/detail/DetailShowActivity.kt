@@ -9,6 +9,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
+import io.faizauthar12.moviez.data.source.remote.request.ApiRequest.Companion.BASE_IMAGE_URL
 import io.faizauthar12.moviez.databinding.ActivityDetailShowBinding
 import io.faizauthar12.moviez.databinding.ContentDetailShowBinding
 
@@ -67,7 +68,7 @@ class DetailShowActivity : AppCompatActivity() {
         supportActionBar?.title = showEntity.originalTitle
 
         Glide.with(this)
-                .load(showEntity.posterPath)
+                .load(BASE_IMAGE_URL + showEntity.posterPath)
                 .transform(RoundedCorners(10))
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                         .error(R.drawable.ic_error))

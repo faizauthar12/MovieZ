@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
+import io.faizauthar12.moviez.data.source.remote.request.ApiRequest.Companion.BASE_IMAGE_URL
 import io.faizauthar12.moviez.databinding.ItemsMoviesBinding
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
@@ -42,7 +43,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                 tvMovieRelease.text = movie.release
                 tvOverview.text = movie.overview
                 Glide.with(itemView.context)
-                        .load(movie.posterPath)
+                        .load(BASE_IMAGE_URL + movie.posterPath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPoster)
