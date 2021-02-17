@@ -18,20 +18,19 @@
             android:theme="@style/Theme.MovieZ.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.detail.DetailShowActivity"
             android:label="@string/title_activity_detail_show"
-            android:parentActivityName=".ui.home.HomeActivity"
             android:theme="@style/Theme.MovieZ.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.home.HomeActivity" />
         </activity>
-        <activity android:name=".ui.home.HomeActivity">
+
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:configChanges="orientation|screenSize">
         </activity>
     </application>
 
