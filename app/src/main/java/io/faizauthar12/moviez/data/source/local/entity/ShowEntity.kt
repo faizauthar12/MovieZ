@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ShowEntity(
         val overview: String?,
-        val originalTitle: String?,
+        val Title: String?,
         val id: Int?,
         val posterPath: String?,
         val release: String?

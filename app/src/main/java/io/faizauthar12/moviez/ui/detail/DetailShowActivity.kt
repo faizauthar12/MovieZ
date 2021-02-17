@@ -61,11 +61,11 @@ class DetailShowActivity : AppCompatActivity() {
     }
 
     private fun populateDetail(showEntity: ShowEntity) {
-        detailContentBinding.tvTitle.text = showEntity.originalTitle
+        detailContentBinding.tvTitle.text = showEntity.Title
         detailContentBinding.tvDescription.text = showEntity.overview
         detailContentBinding.tvReleaseYear.text = showEntity.release
 
-        supportActionBar?.title = showEntity.originalTitle
+        supportActionBar?.title = showEntity.Title
 
         Glide.with(this)
                 .load(BASE_IMAGE_URL + showEntity.posterPath)

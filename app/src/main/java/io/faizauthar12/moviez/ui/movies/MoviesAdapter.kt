@@ -39,7 +39,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     class MovieViewHolder(private val binding: ItemsMoviesBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: ShowEntity, itemClicked: () -> Unit) {
             with(binding) {
-                tvMovieTitle.text = movie.originalTitle
+                tvMovieTitle.text = movie.Title
                 tvMovieRelease.text = movie.release
                 tvOverview.text = movie.overview
                 Glide.with(itemView.context)

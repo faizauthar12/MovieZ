@@ -33,7 +33,7 @@ class MovieZRepository private constructor(private val remoteDataSource: RemoteD
                             movieList.add(
                                 ShowEntity(
                                     result.overview,
-                                    result.originalTitle,
+                                    result.title,
                                     result.id,
                                     result.posterPath,
                                     result.releaseDate
@@ -65,7 +65,7 @@ class MovieZRepository private constructor(private val remoteDataSource: RemoteD
                             serieList.add(
                                 ShowEntity(
                                     result.overview,
-                                    result.originalName,
+                                    result.name,
                                     result.id,
                                     result.posterPath,
                                     result.firstAirDate

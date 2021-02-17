@@ -13,11 +13,11 @@ data class ResultsItem(
     @field:SerializedName("overview")
     var overview: String?,
 
-    @field:SerializedName("original_title")
-    var originalTitle: String?,
+    @field:SerializedName("title")
+    var title: String?,
 
-    @field:SerializedName("original_name")
-    var originalName: String?,
+    @field:SerializedName("name")
+    var name: String?,
 
     @field:SerializedName("id")
     var id: Int?,

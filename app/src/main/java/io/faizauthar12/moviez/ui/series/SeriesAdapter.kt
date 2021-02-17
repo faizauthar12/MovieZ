@@ -1,6 +1,5 @@
 package io.faizauthar12.moviez.ui.series
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,8 +9,6 @@ import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 import io.faizauthar12.moviez.data.source.remote.request.ApiRequest.Companion.BASE_IMAGE_URL
 import io.faizauthar12.moviez.databinding.ItemsSeriesBinding
-import io.faizauthar12.moviez.ui.detail.DetailShowActivity
-import io.faizauthar12.moviez.ui.movies.MoviesAdapter
 
 class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
 
@@ -42,7 +39,7 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
     class SeriesViewHolder(private val binding: ItemsSeriesBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(series: ShowEntity, itemClicked: () -> Unit){
             with(binding){
-                tvSeriesTitle.text = series.originalTitle
+                tvSeriesTitle.text = series.Title
                 tvSeriesRelease.text = series.release
                 tvOverview.text = series.overview
                 Glide.with(itemView.context)
