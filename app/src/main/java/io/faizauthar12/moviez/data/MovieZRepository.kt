@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 import io.faizauthar12.moviez.data.source.remote.RemoteDataSource
-import io.faizauthar12.moviez.data.source.remote.response.MovieResponse
-import io.faizauthar12.moviez.data.source.remote.response.SerieResponse
 
 class MovieZRepository private constructor(private val remoteDataSource: RemoteDataSource): MovieZDataSource {
 

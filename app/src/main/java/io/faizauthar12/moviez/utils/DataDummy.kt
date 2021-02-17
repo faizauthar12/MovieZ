@@ -3,7 +3,7 @@ package io.faizauthar12.moviez.utils
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 
 object DataDummy {
-
+    /*
     fun generateDummyMovies(): List<ShowEntity> {
 
         val movies = ArrayList<ShowEntity>()
@@ -158,4 +158,5 @@ object DataDummy {
 
         return series
     }
+     */
 }

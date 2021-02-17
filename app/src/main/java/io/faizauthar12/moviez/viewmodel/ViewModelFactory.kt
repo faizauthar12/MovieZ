@@ -9,29 +9,29 @@ import io.faizauthar12.moviez.ui.detail.DetailShowViewModel
 import io.faizauthar12.moviez.ui.movies.MoviesViewModel
 import io.faizauthar12.moviez.ui.series.SeriesViewModel
 
-class ViewModelFactory private constructor(private val mMovieZRepository: MovieZRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory (private val mMovieZRepository: MovieZRepository) : ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile
         private var instance: ViewModelFactory? = null
 
-        fun getInstance(context: Context): ViewModelFactory =
+        fun getInstance(): ViewModelFactory =
                 instance ?: synchronized(this) {
-                    instance ?: ViewModelFactory(Injection.provideRepository(context))
+                    instance ?: ViewModelFactory(Injection.provideRepository())
                 }
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        when {
+        return when {
             modelClass.isAssignableFrom(MoviesViewModel::class.java) -> {
-                return MoviesViewModel(mMovieZRepository) as T
+                MoviesViewModel(mMovieZRepository) as T
             }
             modelClass.isAssignableFrom(SeriesViewModel::class.java) -> {
-                return SeriesViewModel(mMovieZRepository) as T
+                SeriesViewModel(mMovieZRepository) as T
             }
             modelClass.isAssignableFrom(DetailShowViewModel::class.java) -> {
-                return DetailShowViewModel(mMovieZRepository) as T
+                DetailShowViewModel(mMovieZRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
