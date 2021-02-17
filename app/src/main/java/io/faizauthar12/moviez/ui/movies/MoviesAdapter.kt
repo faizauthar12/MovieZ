@@ -38,11 +38,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     class MovieViewHolder(private val binding: ItemsMoviesBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: ShowEntity, itemClicked: () -> Unit) {
             with(binding) {
-                tvMovieTitle.text = movie.title
-                tvMovieRelease.text = movie.releaseYear
-                tvOverview.text = movie.description
+                tvMovieTitle.text = movie.originalTitle
+                tvMovieRelease.text = movie.release
+                tvOverview.text = movie.overview
                 Glide.with(itemView.context)
-                        .load(movie.imagePath)
+                        .load(movie.posterPath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPoster)

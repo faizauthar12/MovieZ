@@ -60,14 +60,14 @@ class DetailShowActivity : AppCompatActivity() {
     }
 
     private fun populateDetail(showEntity: ShowEntity) {
-        detailContentBinding.tvTitle.text = showEntity.title
-        detailContentBinding.tvDescription.text = showEntity.description
-        detailContentBinding.tvReleaseYear.text = showEntity.releaseYear
+        detailContentBinding.tvTitle.text = showEntity.originalTitle
+        detailContentBinding.tvDescription.text = showEntity.overview
+        detailContentBinding.tvReleaseYear.text = showEntity.release
 
-        supportActionBar?.title = showEntity.title
+        supportActionBar?.title = showEntity.originalTitle
 
         Glide.with(this)
-                .load(showEntity.imagePath)
+                .load(showEntity.posterPath)
                 .transform(RoundedCorners(10))
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                         .error(R.drawable.ic_error))

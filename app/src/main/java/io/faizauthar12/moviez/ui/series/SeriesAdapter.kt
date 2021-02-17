@@ -41,11 +41,11 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
     class SeriesViewHolder(private val binding: ItemsSeriesBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(series: ShowEntity, itemClicked: () -> Unit){
             with(binding){
-                tvSeriesTitle.text = series.title
-                tvSeriesRelease.text = series.releaseYear
-                tvOverview.text = series.description
+                tvSeriesTitle.text = series.originalTitle
+                tvSeriesRelease.text = series.release
+                tvOverview.text = series.overview
                 Glide.with(itemView.context)
-                        .load(series.imagePath)
+                        .load(series.posterPath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPoster)
