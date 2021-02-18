@@ -1,4 +1,4 @@
-package io.faizauthar12.moviez.utils
+package io.faizauthar12.moviez.ui.utils
 
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
 

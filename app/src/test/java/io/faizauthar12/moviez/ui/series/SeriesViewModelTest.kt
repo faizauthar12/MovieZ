@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import io.faizauthar12.moviez.data.MovieZRepository
 import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
-import io.faizauthar12.moviez.utils.DataDummy
+import io.faizauthar12.moviez.ui.utils.DataDummy
 import org.junit.Test
 
 import org.junit.Assert.*
