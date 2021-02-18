@@ -1,7 +1,6 @@
 package io.faizauthar12.moviez.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
@@ -11,12 +10,6 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import io.faizauthar12.moviez.R
-import io.faizauthar12.moviez.data.MovieZDataSource
-import io.faizauthar12.moviez.data.MovieZRepository
-import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
-import io.faizauthar12.moviez.data.source.remote.RemoteDataSource
-import io.faizauthar12.moviez.ui.movies.MoviesAdapter
-import io.faizauthar12.moviez.utils.DataDummy
 import io.faizauthar12.moviez.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before

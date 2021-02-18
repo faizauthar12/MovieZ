@@ -1,11 +1,9 @@
 package io.faizauthar12.moviez.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.faizauthar12.moviez.data.MovieZRepository
 import io.faizauthar12.moviez.di.Injection
-import io.faizauthar12.moviez.ui.detail.DetailShowViewModel
 import io.faizauthar12.moviez.ui.movies.MoviesViewModel
 import io.faizauthar12.moviez.ui.series.SeriesViewModel
 
@@ -29,9 +27,6 @@ class ViewModelFactory (private val mMovieZRepository: MovieZRepository) : ViewM
             }
             modelClass.isAssignableFrom(SeriesViewModel::class.java) -> {
                 SeriesViewModel(mMovieZRepository) as T
-            }
-            modelClass.isAssignableFrom(DetailShowViewModel::class.java) -> {
-                DetailShowViewModel(mMovieZRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
