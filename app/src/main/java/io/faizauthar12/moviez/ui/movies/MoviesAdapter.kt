@@ -17,7 +17,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     var onItemClickCallback: OnItemClickCallback? = null
 
     fun setMovies(movies: List<ShowEntity>?) {
-        if (movies == null) return
+        if (movies.isNullOrEmpty()) return
         this.listMovie.clear()
         this.listMovie.addAll(movies)
     }

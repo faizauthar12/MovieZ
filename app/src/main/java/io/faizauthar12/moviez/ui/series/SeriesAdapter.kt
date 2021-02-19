@@ -17,7 +17,7 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
     var onItemClickCallback: SeriesAdapter.OnItemClickCallback? = null
 
     fun setSeries(series: List<ShowEntity>?){
-        if (series == null) return
+        if (series.isNullOrEmpty()) return
         this.listSeries.clear()
         this.listSeries.addAll(series)
     }
