@@ -33,11 +33,6 @@ class DetailShowActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        /*
-        val factory = ViewModelFactory.getInstance()
-        val viewModel = ViewModelProvider(this,factory)[DetailShowViewModel::class.java]
-         */
-
         // Visibility changes before populated
         activityDetailShowBinding.progressBar.visibility = View.VISIBLE
         activityDetailShowBinding.content.visibility = View.INVISIBLE
