@@ -63,6 +63,8 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$botNavVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$botNavVersion"
 
     //testing
     testImplementation "junit:junit:$junitVersion"
