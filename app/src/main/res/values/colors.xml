@@ -11,4 +11,5 @@
     <color name="black20">#33000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="placeholder">#6FB6B6B6</color>
+    <color name="gray">#A9A9A9</color>
 </resources>
