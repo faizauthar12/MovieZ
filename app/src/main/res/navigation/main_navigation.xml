@@ -16,4 +16,9 @@
         android:name="io.faizauthar12.moviez.ui.series.SeriesFragment"
         android:label="@string/tv_shows"
         tools:layout="@layout/fragment_series" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="io.faizauthar12.moviez.ui.favorite.FavoriteFragment"
+        android:label="@string/tv_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

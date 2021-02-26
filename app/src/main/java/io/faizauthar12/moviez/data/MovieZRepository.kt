@@ -36,7 +36,9 @@ class MovieZRepository private constructor(private val remoteDataSource: RemoteD
                                     result.title,
                                     result.id,
                                     result.posterPath,
-                                    result.releaseDate
+                                    result.releaseDate,
+                                        false,
+                                        1
                                 )
                             )
                         }
@@ -68,7 +70,9 @@ class MovieZRepository private constructor(private val remoteDataSource: RemoteD
                                     result.name,
                                     result.id,
                                     result.posterPath,
-                                    result.firstAirDate
+                                    result.firstAirDate,
+                                        false,
+                                        2
                                 )
                             )
                         }

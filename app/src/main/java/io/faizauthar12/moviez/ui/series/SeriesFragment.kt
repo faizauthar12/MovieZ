@@ -28,7 +28,7 @@ class SeriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null){
-            val factory = ViewModelFactory.getInstance()
+            val factory = ViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(this,factory)[SeriesViewModel::class.java]
 
             val seriesAdapter = SeriesAdapter()

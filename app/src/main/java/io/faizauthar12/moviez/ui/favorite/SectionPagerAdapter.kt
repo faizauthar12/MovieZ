@@ -1,0 +1,28 @@
+package io.faizauthar12.moviez.ui.favorite
+
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import io.faizauthar12.moviez.R
+import io.faizauthar12.moviez.ui.favorite.movies.FavoriteMoviesFragment
+import io.faizauthar12.moviez.ui.favorite.series.FavoriteSeriesFragment
+
+class SectionPagerAdapter(private val mContext: FavoriteFragment, fm: FragmentManager): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+    companion object {
+        @StringRes
+        private val TAB_TITLES = intArrayOf(R.string.movies, R.string.tv_shows)
+    }
+
+    override fun getItem(position: Int): Fragment =
+        when (position) {
+            0 -> FavoriteMoviesFragment()
+            1 -> FavoriteSeriesFragment()
+            else -> Fragment()
+        }
+
+    override fun getPageTitle(position: Int): CharSequence? = mContext.resources.getString(TAB_TITLES[position])
+
+    override fun getCount(): Int = TAB_TITLES.size
+}
