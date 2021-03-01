@@ -2,7 +2,6 @@ package io.faizauthar12.moviez.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.NonNull
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.faizauthar12.moviez.R
 import io.faizauthar12.moviez.databinding.ActivityHomeBinding
@@ -31,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.seriesFragment, R.id.moviesFragment
+            R.id.seriesFragment, R.id.moviesFragment, R.id.favoriteFragment
         ).build()
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)

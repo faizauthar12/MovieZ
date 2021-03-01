@@ -9,4 +9,6 @@
     <string name="descriptionalt">%s...</string>
     <string name="title_series">Tv Shows Title</string>
     <string name="moviez_logo">MovieZ Logo</string>
+    <string name="favorite">favorite</string>
+    <string name="tv_favorite">Favorite</string>
 </resources>

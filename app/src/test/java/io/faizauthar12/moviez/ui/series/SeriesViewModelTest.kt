@@ -1,53 +1,58 @@
 package io.faizauthar12.moviez.ui.series
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import io.faizauthar12.moviez.data.MovieZRepository
-import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
+import androidx.paging.PagedList
+import io.faizauthar12.moviez.data.entities.ShowEntity
+import io.faizauthar12.moviez.data.source.MovieZRepository
 import io.faizauthar12.moviez.ui.utils.DataDummy
-import org.junit.Test
-
-import org.junit.Assert.*
+import io.faizauthar12.moviez.ui.navigation.utils.PagedListUtil
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.MockitoAnnotations
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(JUnit4::class)
 class SeriesViewModelTest {
-
-    private lateinit var viewModel: SeriesViewModel
-
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
     private lateinit var movieZRepository: MovieZRepository
+    private lateinit var viewModel: SeriesViewModel
 
     @Mock
-    private lateinit var observer: Observer<List<ShowEntity>>
+    private lateinit var observer: Observer<PagedList<ShowEntity>>
 
     @Before
     fun setUp(){
+        MockitoAnnotations.initMocks(this)
         viewModel = SeriesViewModel(movieZRepository)
     }
 
     @Test
     fun getSeries() {
-        val dummySeries = DataDummy.generateDummySeries()
-        val series = MutableLiveData<List<ShowEntity>>()
-        series.value = dummySeries
+        val mutableDummyData = MutableLiveData<PagedList<ShowEntity>>()
+        val dummyContent = PagedListUtil.mockPagedList(DataDummy.generateDummySeries())
+        mutableDummyData.postValue(dummyContent)
+        val dummyData: LiveData<PagedList<ShowEntity>> = mutableDummyData
 
-        Mockito.`when`(movieZRepository.getAllSeries()).thenReturn(series)
-        val showsEntities = viewModel.getSeries().value
-        Mockito.verify(movieZRepository).getAllSeries()
-        assertNotNull(showsEntities)
-        assertEquals(10,showsEntities?.size)
+
+        `when`(movieZRepository.getAllSeries()).thenReturn(dummyData)
+        val courseEntities = viewModel.getSeries().value
+        verify(movieZRepository).getAllSeries()
+        Assert.assertNotNull(courseEntities)
+        Assert.assertEquals(1, courseEntities?.size)
 
         viewModel.getSeries().observeForever(observer)
-        Mockito.verify(observer).onChanged(dummySeries)
+        verify(observer).onChanged(dummyContent)
     }
 }

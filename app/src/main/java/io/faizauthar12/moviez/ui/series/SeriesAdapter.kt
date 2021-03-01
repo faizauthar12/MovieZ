@@ -1,26 +1,35 @@
 package io.faizauthar12.moviez.ui.series
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import io.faizauthar12.moviez.BuildConfig.BaseImageUrl
 import io.faizauthar12.moviez.R
-import io.faizauthar12.moviez.data.source.local.entity.ShowEntity
-import io.faizauthar12.moviez.data.source.remote.request.ApiRequest.Companion.BASE_IMAGE_URL
+import io.faizauthar12.moviez.data.entities.ShowEntity
 import io.faizauthar12.moviez.databinding.ItemsSeriesBinding
+import io.faizauthar12.moviez.utils.EspressoIdlingResource
 
-class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
+class SeriesAdapter : PagedListAdapter<ShowEntity, SeriesAdapter.SeriesViewHolder>(DIFF_CALLBACK){
 
-    private val listSeries = ArrayList<ShowEntity>()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ShowEntity>() {
+            override fun areItemsTheSame(oldItem: ShowEntity, newItem: ShowEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    var onItemClickCallback: SeriesAdapter.OnItemClickCallback? = null
-
-    fun setSeries(series: List<ShowEntity>?){
-        if (series.isNullOrEmpty()) return
-        this.listSeries.clear()
-        this.listSeries.addAll(series)
+            @SuppressLint("DiffUtilEquals")
+            override fun areContentsTheSame(oldItem: ShowEntity, newItem: ShowEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
+
+    var onItemClickCallback: OnItemClickCallback? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
         val itemsSeriesBinding = ItemsSeriesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -28,22 +37,22 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
-        val series = listSeries[position]
-        holder.bind(series) {
-            onItemClickCallback?.onItemClicked(series)
+        val series = getItem(position)
+        series?.let {
+            holder.bind(series) {
+                onItemClickCallback?.onItemClicked(series)
+            }
         }
     }
-
-    override fun getItemCount(): Int = listSeries.size
 
     class SeriesViewHolder(private val binding: ItemsSeriesBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(series: ShowEntity, itemClicked: () -> Unit){
             with(binding){
-                tvSeriesTitle.text = series.Title
-                tvSeriesRelease.text = series.release
+                tvSeriesTitle.text = series.title
+                tvSeriesRelease.text = series.releaseDate
                 tvOverview.text = series.overview
                 Glide.with(itemView.context)
-                        .load(BASE_IMAGE_URL + series.posterPath)
+                        .load(BaseImageUrl + series.posterPath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPoster)
